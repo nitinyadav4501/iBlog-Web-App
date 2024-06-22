@@ -134,7 +134,7 @@ export const ContextProvider = ({ children }) => {
 
   const deleteBlog = async (id) => {
     try {
-      const confirmDoc = confirm("Are you sure to delete this blog");
+      const confirmDoc = confirm("Do you want to delete this blog ? ");
       if (confirmDoc) {
         await deleteDoc(doc(fireDb, "blog", id));
         console.log("Deleted successfully !")

@@ -4,7 +4,7 @@ import Logo from "../logo/Logo";
 function Navbar() {
   const user = JSON.parse(localStorage.getItem("user"));
   const logout = () => {
-    const confirmUser = confirm("Are you sure for Logout your account");
+    const confirmUser = confirm("Do you want to logout from iBlog ?");
     console.log(confirmUser);
     if (confirmUser) {
       localStorage.clear();
