@@ -33,21 +33,19 @@ function Home() {
                 Blogs
               </h1>
               <div className="flex justify-center items-center flex-wrap gap-x-10 gap-y-10">
-                <div className="mt-12">{loading && <Loader />}</div>
-                {blogsData.map((blog) => {
-                  if (blogsData.length===0) {
+                {blogsData.length === 0 ? (
+                  <div className="text-center font-medium text-2xl text-red-600 mt-10">
+                    {loading ? <Loader /> : "There are no blogs available !"}
+                  </div>
+                ) : (
+                  blogsData.map((blog) => {
                     return (
-                      <div className="text-center font-medium text-2xl text-red-600 mt-10">
-                        Not available any Blogs
+                      <div key={blog.id}>
+                        <BlogCard blogData={blog} />
                       </div>
                     );
-                  }
-                  return (
-                    <div key={blog.id}>
-                      <BlogCard blogData={blog} />
-                    </div>
-                  );
-                })}
+                  })
+                )}
               </div>
             </div>
           </>
