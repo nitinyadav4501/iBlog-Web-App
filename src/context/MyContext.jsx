@@ -20,12 +20,19 @@ export const ContextProvider = ({ children }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('')
+  const [passwordLengthError, setPasswordLengthError] = useState('')
 
   const signup = async () => {
     setLoading(true);
     try {
       if (!name || !email || !password) {
         throw new Error("All fields are required");
+      }
+      if(password.length<=6){
+        setPasswordLengthError(
+          "Password should be at least 6 characters"
+        );
       }
       const users = await createUserWithEmailAndPassword(
         auth,
@@ -47,6 +54,7 @@ export const ContextProvider = ({ children }) => {
       setPassword("");
     } catch (error) {
       console.log(error);
+      setError("This email already resistered !")
     } finally {
       setLoading(false);
     }
@@ -64,6 +72,7 @@ export const ContextProvider = ({ children }) => {
       setLoading(false);
     } catch (error) {
       console.log(error.message);
+      setError("Something went wrong !")
     } finally {
       setLoading(false);
     }
@@ -172,7 +181,9 @@ export const ContextProvider = ({ children }) => {
         addBlog,
         blogsData,
         getBlogData,
-        deleteBlog
+        deleteBlog,
+        error,
+        passwordLengthError,
       }}
     >
       {children}

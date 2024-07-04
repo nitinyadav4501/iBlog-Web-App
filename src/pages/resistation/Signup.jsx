@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useMyContext } from "../../context/MyContext";
 import Loader from "../../components/loader/Loader";
@@ -13,6 +13,8 @@ function Signup() {
     password,
     setPassword,
     loading,
+    error,
+    passwordLengthError,
   } = useMyContext();
 
   const handleSubmit = (e) => {
@@ -56,7 +58,11 @@ function Signup() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+          <div className="text-red-700">
+            {handleSubmit?passwordLengthError:""}
+          </div>
         </div>
+        <div className="text-red-700">{!handleSubmit ? error : ""}</div>
         <button
           type="submit"
           className="w-full bg-gray-300 text-center border border-[#CED4D3] text-[#627473] py-2 rounded-md font-bold"

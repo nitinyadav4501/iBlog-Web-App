@@ -4,7 +4,7 @@ import { useMyContext } from "../../context/MyContext";
 import Loader from "../../components/loader/Loader";
 
 function Login() {
-  const { login, email, setEmail, password, setPassword, loading } =
+  const { login, email, setEmail, password, setPassword, loading,error } =
     useMyContext();
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -39,6 +39,7 @@ function Login() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
+        <div className="text-red-700">{handleSubmit ? error : ""}</div>
         <button
           type="submit"
           className="w-full bg-gray-300 text-center border border-[#CED4D3] text-[#627473] py-2 rounded-md font-bold"
